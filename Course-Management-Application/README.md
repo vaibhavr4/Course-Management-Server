@@ -3,7 +3,7 @@
 **`This repository belongs to Vaibhav Rangarajan`**
 
 ### Link to course webpage :  
-#### [CS510- Web Development](https://docs.google.com/document/d/1bm3a-C37zStFFcctO1MhZvEG5gdVsVmEgiPsn6HtlS8/edit "Course page link")
+#### [CS5610- Web Development](https://docs.google.com/document/d/1bm3a-C37zStFFcctO1MhZvEG5gdVsVmEgiPsn6HtlS8/edit "Course page link")
 #### PROFESSSOR : Jose Annunziato [[About me]](https://www.ccis.northeastern.edu/people/jose-annunziato/ "Link to my page")
 
 ------------
