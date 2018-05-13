@@ -42,6 +42,7 @@
     }
 
     function renderUsers(users) {
+    	tbody.empty();
         for(var i=0; i<users.length; i++) {
             var user = users[i];
             var clone = template.clone();
@@ -53,16 +54,31 @@
             .html(user.firstName);
             clone.find('.lastName')
             .html(user.lastName);
+            
+            clone.attr('id', user.id);
+
+            clone.find('.delete').click(deleteUser);
+            clone.find('.edit').click(editUser);
+
             tbody.append(clone);
         }
     }
     
-    $('table td').each(function(){
-        var $this = $(this);
-        if ($this.find('.password')) 
-        	{
-        	$this.hide();
-        	}
-    })
+    function deleteUser(event) {
+        var deleteBtn = $(event.currentTarget);
+        var userId = deleteBtn
+            .parent()
+            .parent()
+            .attr('id');
+
+        userService
+            .deleteUser(userId)
+            .then(findAllUsers);
+    }
+
+    function editUser(event) {
+        console.log('editUser');
+        console.log(event);
+    }
 })();
 
