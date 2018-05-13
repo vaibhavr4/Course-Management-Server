@@ -28,12 +28,14 @@
         var password = $('#passwordFld').val();
         var firstName = $('#firstNameFld').val();
         var lastName = $('#lastNameFld').val();
+        var role = $('#roleFld').val();
 
         var user = {
             username: username,
             password: password,
             firstName: firstName,
-            lastName: lastName
+            lastName: lastName,
+            role: role
         };
         
         userService
@@ -54,6 +56,8 @@
             .html(user.firstName);
             clone.find('.lastName')
             .html(user.lastName);
+            clone.find('.role')
+            .html(user.role);
             
             clone.attr('id', user.id);
 
