@@ -89,11 +89,9 @@
             .parent()
             .parent()
             .attr('id');
-
-        var user = userService
-        .findUserById(userId);
-        console.log(user);
-        $(location).attr('href', redirecturl);
+        
+        console.log(userId);
+        $(location).attr('href', '/jquery/components/profile/profile.template.client.html?userId=' + userId);
         
     }
     
