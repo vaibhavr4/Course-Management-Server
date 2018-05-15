@@ -86,6 +86,7 @@ public class UserService {
 		return fetchedUser;
 	}
 
+	@GetMapping("/api/user/username/{username}")
 	public User findUserByUsername(String username) {
 		User user = null;
 		Iterable<User> result = repository.findUserByUsername(username);
@@ -96,6 +97,7 @@ public class UserService {
 		}
 		return user;
 	}
+	
 	
 	@PostMapping("/api/register")
 	public User register(@RequestBody User user, HttpSession session, HttpServletResponse response) {

@@ -2,10 +2,11 @@
 (function () {
 
     jQuery(main);
-
+    
     var tbody;
     var template;
-    var userService = new UserServiceClient()
+    var userService = new UserServiceClient();
+    var redirecturl = '/jquery/components/profile/profile.template.client.html';
     
     function main() {
         tbody = $('tbody');
@@ -83,6 +84,18 @@
     function editUser(event) {
         console.log('editUser');
         console.log(event);
+        var editBtn = $(event.currentTarget);
+        var userId = editBtn
+            .parent()
+            .parent()
+            .attr('id');
+
+        var user = userService
+        .findUserById(userId);
+        console.log(user);
+        $(location).attr('href', redirecturl);
+        
     }
+    
 })();
 

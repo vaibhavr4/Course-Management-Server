@@ -9,6 +9,8 @@
     var $email;
     var $dob;
     var $updateBtn;
+    var $logoutBtn;
+    var userId;    
     
     var userService = new UserServiceClient();
 
@@ -25,7 +27,36 @@
         $updateBtn = $("#updateBtn")
         .click(updateUser);
         
-        findUserById(62);
+        $logoutBtn = $("#logoutBtn")
+        .click(logoutUser);
+        
+        userId = getUrlVars()['userId'];
+        findUserById(userId);
+        //findUserById(132);
+        //findUserByUserName(userName);
+    }
+    
+    
+    function getUrlVars()
+    {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+
+        return vars;
+    }
+
+    
+    function logoutUser()
+    {
+    	userService
+    		.logoutUser();
     }
     
     function updateUser() {
@@ -39,15 +70,15 @@
         };
 
         userService
-            .updateUser(62, user)
+            .updateUser(userId, user)
             .then(success);
     }
     
     function success(response) {
-        if(response === null) {
-            alert('unable to update')
+        if(response != null) {
+            alert('Successfully updated')
         } else {
-            alert('success');
+            alert('Unable to update');
         }
     }
     
@@ -57,9 +88,16 @@
             .then(renderUser);
     }
     
+    function findUserByUsername(userName) {
+        userService
+            .findUserByUsername(userName)
+            .then(renderUser);
+    }
+    
     function renderUser(user) {
         console.log(user);
         $userName.val(user.username);
+        $password.val(user.password);
         $firstName.val(user.firstName);
         $lastName.val(user.lastName);
         $role.val(user.role);
