@@ -12,7 +12,7 @@ function UserServiceClient() {
         'http://localhost:8080/api/user';
     this.loginurl= "/api/login";
     this.registerurl = "/api/register";
-    this.logouturl = '/jquery/components/login/login.template.client.html';
+    this.logouturl = '../../../index.html';
     var self = this;
     
     function login(username, password) {
