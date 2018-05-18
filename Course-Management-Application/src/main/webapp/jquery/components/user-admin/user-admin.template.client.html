@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href=
+  "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="user-admin.style.client.css" rel="stylesheet"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
 <title>Insert title here</title>
   <script
           src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -13,6 +17,7 @@
 
 </head>
 <body>
+
 <div class="container">
   <h1 id="title">User Admin</h1>
 
@@ -21,6 +26,7 @@
       <tr>
         <th>Username</th>
         <th>Password</th>
+        <th></th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Role</th>
@@ -30,6 +36,10 @@
       <tr>
         <th><input id="usernameFld" class="form-control" placeholder="Username"/></th>
         <th><input id="passwordFld" class="form-control" type="password"/></th>
+        <th> <i id="reveal" class="fa-2x fa fa-eye" onmousedown="revealPassword()" onmouseup="hidePassword()"></i></th>
+		
+		
+		
         <th><input id="firstNameFld" class="form-control" placeholder="FirstName"/></th>
         <th><input id="lastNameFld" class="form-control" placeholder="LastName"/></th>
 <th>
@@ -37,24 +47,80 @@
     <option value="Faculty">Faculty</option>
     <option value="Student">Student</option>
   </select></th>
-        <th><button id="createUser" class="btn btn-success">Create</button></th>
+        <!-- <th><button id="createUser" class="btn btn-success">Create</button></th> -->
+        <th>
+          			<span class="float-right" style="white-space: nowrap">
+          				<button class="btn"><i id="wbdv-search" class="fa-2x fa fa-search wbdv-search"></i></button>
+          				<button class="btn"><i id="wbdv-create" class="fa-2x fa fa-plus wbdv-create"></i></button>
+          				<button class="btn"><i id="wbdv-update" class="fa-2x fa fa-check wbdv-update"></i></button>
+          			</span>
+          		</th>
       </tr>
     </thead>
     <tbody>
       <tr class="template">
         <td class="username">alice</td>
-        <td class="password">ALWO</td>
+        <td><input class="form-control password" type="password"/></td>
+        <td></td>
+        <!-- <td class="password">ALWO</td> -->
         <td class="firstName">Alice</td>
         <td class="lastName">Wonderland</td>
         <td class="role">Student</td>
-        <th>
+        <!-- <th>
         <button class="delete btn btn-danger">Delete</button></th>
           <th><button class="edit btn btn-danger">Edit</button>
-          </th>
+          </th> -->
+          <th>
+          				<button class="delete"><i id="wbdv-remove" class="fa-2x fa fa-times wbdv-remove"></i></button>
+          				<button class="edit"><i id="wbdv-edit" class="fa-2x fa fa-pencil wbdv-edit"></i></button>
+          			</th>
       </tr>
+      
+      
     </tbody>
+    
     <tfoot></tfoot>
   </table>
   </div>
+  <script> 
+$(document).ready(function(){
+    
+        var div = $(".container");
+        div.animate({height: '100%', opacity: '0.4'}, "slow");
+        div.animate({width: '100%', opacity: '1'}, "slow");
+        
+        
+        
+    
+});
+</script> 
+  <script>
+  
+		function revealPassword() {
+		    var x = document.getElementById("passwordFld");
+		    var y = document.getElementById("reveal");
+		    if (x.type === "password") {
+		        x.type = "text";
+		    }
+		    else
+		    	{
+		    	x.type="password";
+		    	}
+		    	}
+		function hidePassword()
+		{
+			var x = document.getElementById("passwordFld");
+		    var y = document.getElementById("reveal");
+		    if (x.type === "text") {
+		        x.type = "password";
+		    } 
+		    else
+		    	{
+		    	x.type="text"
+		    	}
+		    }
+		    
+	</script>
+	
 </body>
 </html>

@@ -1,0 +1,15 @@
+body
+{
+	background-position: center center;
+	background-attachment: fixed;
+	background-image:url("../../../images/red-car-min.jpg");
+	background-size: cover ;	
+	background-repeat: no-repeat;
+	background-color: #fff;
+}
+
+
+.container
+{
+	background-color:#FBF9F9;
+}

@@ -13,7 +13,8 @@
     var userId;    
     
     var userService = new UserServiceClient();
-
+    
+    
     function init() {
     	$userName = $("#userName");
     	$password = $("#inputPassword");
@@ -23,7 +24,13 @@
         $phone = $("#phone");
         $email = $("#email");
         $dob = $("#dob");
-        
+        $invalidFirstName = $('#firstName-message');
+        $invalidPassword = $('#password-message');
+        $invalidLastName = $('#lastName-message');
+        $invaliddob = $('#dob-message');
+        $invalidEmail = $('#email-message');
+        $invalidPhone = $('#phone-message');
+        $invalidRole = $('#role-message');
         $updateBtn = $("#updateBtn")
         .click(updateUser);
         
@@ -58,22 +65,133 @@
     	userService
     		.logoutUser();
     }
-    
+    function validateFirstName()
+    {
+    	if($firstName.val()=="" || $firstName.val()==null)
+    		{
+    		$invalidFirstName.css('color', 'red').css('visibility', 'visible');
+    		return false;
+    		}
+    	else
+    		{
+    		
+    	$invalidFirstName.css('visibility', 'hidden');
+    	return true;
+    		}
+    }
+    function validateLastName()
+    {
+    	if($lastName.val()=="" || $firstName.val()==null)
+    		{
+    		$invalidLastName.css('color', 'red').css('visibility', 'visible');
+    		return false;
+    		}
+    	else
+    		{
+    		
+    	$invalidLastName.css('visibility', 'hidden');
+    	return true;
+    		}
+    }
+    function validatedob()
+    {
+    	if($dob.val()=="")
+    		{
+    		$invaliddob.css('color', 'red').css('visibility', 'visible');
+    		return false;
+    		}
+    	else
+    		{
+    		
+    	$invaliddob.css('visibility', 'hidden');
+    	return true;
+    		}
+    }
+    function validatePassword()
+    {
+    	if($password.val()=="")
+    		{
+    		$invalidPassword.css('color', 'red').css('visibility', 'visible');
+    		return false;
+    		}
+    	else
+    		{
+    		
+    	$invalidPassword.css('visibility', 'hidden');
+    	return true;
+    		}
+    }
+    function validateEmail()
+    {
+    	var re = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    	var is_email=re.test($email.val());
+    	if(!is_email)
+    		{
+    		$invalidEmail.css('color', 'red').css('visibility', 'visible');
+    		return false;
+    		}
+    	else
+    		{
+    		
+    	$invalidEmail.css('visibility', 'hidden');
+    	return true;
+    		}
+    }
+    function validatePhone()
+    {
+    	var phre = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
+    	var is_phone=phre.test($phone.val());
+    	if(!is_phone)
+    		{
+    		$invalidPhone.css('color', 'red').css('visibility', 'visible');
+    		return false;
+    		}
+    	else
+    		{
+    		
+    		$invalidPhone.css('visibility', 'hidden');
+    		return true;
+    		}
+    }
+    function validateRole()
+    {
+    	if(role=="")
+    		{
+    		$invalidRole.css('color', 'red').css('visibility', 'visible');
+    		return false;
+    		}
+    	else
+    		{
+    		
+    	$invalidRole.css('visibility', 'hidden');
+    	return true;
+    		}
+    }
     function updateUser() {
+    	if(validateFirstName()&&
+    	validateLastName()&&
+    	validatePassword()&&
+    	validatedob()&&
+    	validateEmail()&&
+    	validatePhone()&&
+    	validateRole())
+    		{
         var user = {
-            firstName: $firstName.val(),
-            lastName: $lastName.val(),
-            password: $password.val(),
-            email: $email.val(),
-            phone: $phone.val(),
-            dob: $dob.val()
+        		firstName: $firstName.val(),
+                lastName: $lastName.val(),
+                password: $password.val(),
+                email: $email.val(),
+                phone: $phone.val(),
+                dob: $dob.val(),
+                role: $role.val()
         };
-
+        
+        
         userService
             .updateUser(userId, user)
             .then(success);
     }
-    
+    }
     function success(response) {
         if(response != null) {
             alert('Successfully updated')

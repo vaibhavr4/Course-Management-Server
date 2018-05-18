@@ -1,21 +1,29 @@
 //IIFE
 (function () {
 
+	var div = $(".container");
+    div.animate({height: '100%', opacity: '0.4'}, "slow");
+    div.animate({width: '100%', opacity: '0.8'}, "slow");
+
     jQuery(main);
     
     var tbody;
     var template;
+    var userIdGlobal;
     var userService = new UserServiceClient();
     var redirecturl = '/jquery/components/profile/profile.template.client.html';
+    
     
     function main() {
         tbody = $('tbody');
         template = $('.template');
-        $('#createUser').click(createUser);
+        //$('#createUser').click(createUser);
+        $('#wbdv-create').click(createUser);
+        $('#wbdv-update').click(updateUser);
         findAllUsers();
     }
 
-    
+
     function findAllUsers() {
         userService
             .findAllUsers()
@@ -52,7 +60,7 @@
             clone.find('.username')
                 .html(user.username);
             clone.find('.password')
-            .html(user.password);
+            .val(user.password);
             clone.find('.firstName')
             .html(user.firstName);
             clone.find('.lastName')
@@ -89,10 +97,39 @@
             .parent()
             .parent()
             .attr('id');
+        userIdGlobal = userId;
+        findUserById(userId).then(function (user) {
+            $('#usernameFld').val(user.username);
+            $('#passwordFld').val(user.password);
+            $('#firstNameFld').val(user.firstName);
+            $('#lastNameFld').val(user.lastName);
+            $('#roleFld').val(user.role);
+        })
         
         console.log(userId);
-        $(location).attr('href', '/jquery/components/profile/profile.template.client.html?userId=' + userId);
+       // $(location).attr('href', '/jquery/components/profile/profile.template.client.html?userId=' + userId);
         
+    }
+    
+    function findUserById(userId) {
+        return userService.findUserById(userId);
+    }
+    
+    function updateUser() {
+        var username = $('#usernameFld').val();
+        var password = $('#passwordFld').val();
+        var firstName = $('#firstNameFld').val();
+        var lastName = $('#lastNameFld').val();
+        var role = $('#roleFld').val();
+        var user = {
+            username: username,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+            role: role
+        };
+        userService.updateUser(userIdGlobal,user).then(findAllUsers);
+        userIdGlobal = null;
     }
     
 })();
