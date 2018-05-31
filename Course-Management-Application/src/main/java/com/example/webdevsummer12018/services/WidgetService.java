@@ -34,6 +34,16 @@ public class WidgetService {
 		
 	}
 	
+	@PostMapping("/api/widget/save")
+		public void saveAllWidgets(@RequestBody List<Widget> widgets)
+		{
+			widgetRepository.deleteAll();
+	 	for(Widget widget: widgets)
+			{
+				widgetRepository .save(widget);
+			}
+		}
+	
 	@PostMapping("/api/widget/save/{topicId}")
 	public List<Widget> saveAllWidgets(@RequestBody List<Widget> widgets, @PathVariable("topicId") int topicId) {
 		Optional<Topic> topicData = topicRepository.findById(topicId);
@@ -66,7 +76,7 @@ public class WidgetService {
 		Optional<Topic> data = topicRepository.findById(topicId);
 		if(data.isPresent()) {
 			Topic course = data.get();
-			return course.getWidgets();
+			return widgetRepository.findAllWidgetsByTopicSorted(course);
 		}
 		return null;		
 	}
