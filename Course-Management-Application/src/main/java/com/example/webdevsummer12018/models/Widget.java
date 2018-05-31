@@ -13,14 +13,40 @@ public class Widget {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
+	private enum ListType {
+		ordered, unordered
+	}
+	
 	private String text;
 	private String widgetType;
 	private String name;
 	private int size;
-	private int listType;
+	private ListType listType;
 	private String linkName;
 	private int widgetOrder;
+	private String style;
+	private String width;
+	private String height;
 	
+	public String getStyle() {
+		return style;
+	}
+	public void setStyle(String style) {
+		this.style = style;
+	}
+	public String getWidth() {
+		return width;
+	}
+	public void setWidth(String width) {
+		this.width = width;
+	}
+	public String getHeight() {
+		return height;
+	}
+	public void setHeight(String height) {
+		this.height = height;
+	}
 	@ManyToOne
 	@JsonIgnore
 	private Topic topic	;
@@ -56,10 +82,11 @@ public class Widget {
 		this.size = size;
 	}
 	
-	public int getListType() {
+
+	public ListType getListType() {
 		return listType;
 	}
-	public void setListType(int listType) {
+	public void setListType(ListType listType) {
 		this.listType = listType;
 	}
 	public String getWidgetType() {
