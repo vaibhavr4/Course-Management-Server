@@ -13,9 +13,9 @@ import com.example.webdevsummer12018.models.Course;
 public interface CourseRepository
 extends CrudRepository<Course, Integer> {
 	
-	@Query("SELECT u FROM Course u WHERE u.title=:title")
-	Optional<Course> findCourseByTitle(
-			@Param("title") String title);
+//	@Query("SELECT u FROM Course u WHERE u.title=:title")
+//	Optional<Course> findCourseByTitle(
+//			@Param("title") String title);
 
 	
 

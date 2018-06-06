@@ -23,16 +23,29 @@ public class Lesson {
 	@JsonIgnore
 	private Module module;
 	
+//	@OneToMany(mappedBy="lesson")
+//	@JsonIgnore
+//	private List<Topic> topic;
+	
 	@OneToMany(mappedBy="lesson")
-	private List<Topic> topic;
+	@JsonIgnore
+	private List<ExamWidget> examWidget;
 
-	public List<Topic> getTopic() {
-		return topic;
+	public List<ExamWidget> getExamWidget() {
+		return examWidget;
 	}
 
-	public void setTopic(List<Topic> topic) {
-		this.topic = topic;
+	public void setExamWidget(List<ExamWidget> examWidget) {
+		this.examWidget = examWidget;
 	}
+
+//	public List<Topic> getTopic() {
+//		return topic;
+//	}
+//
+//	public void setTopic(List<Topic> topic) {
+//		this.topic = topic;
+//	}
 
 	public int getId() {
 		return id;
