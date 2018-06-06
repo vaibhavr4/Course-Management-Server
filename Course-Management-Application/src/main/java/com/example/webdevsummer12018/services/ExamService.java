@@ -97,6 +97,8 @@ public class ExamService {
 		if(data.isPresent()) {
 			Exam exam = data.get();
 			newTrueOrFalseExamQuestion.setExam(exam);
+			
+			System.out.println("TELL ME WHY:"+newTrueOrFalseExamQuestion.isAnswer());
 			return trueFalseRepository.save(newTrueOrFalseExamQuestion);
 		}
 		return null;		
