@@ -1,2 +1,2 @@
-# Web-dev-Summer1-2018
-Course page of summer-1 Web Development - 2018
+# Course Management system server
+This contains the server code of course management system application built across multiple client platforms along with the login and admin page designed in Jquery.
